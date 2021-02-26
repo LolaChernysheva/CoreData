@@ -13,7 +13,6 @@ class TableViewController: UITableViewController {
     
     var toDoItems: [Task] = []
     
-    
     @IBAction func addTask(_ sender: UIBarButtonItem) {
         let ac = UIAlertController(title: "Add Task", message: "add new task", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { action in
@@ -30,9 +29,6 @@ class TableViewController: UITableViewController {
         ac.addAction(ok)
         ac.addAction(cancel)
         present(ac, animated: true, completion: nil)
-        
-        
-        
     }
     
     func saveTask (taskToDo: String) {
@@ -51,6 +47,19 @@ class TableViewController: UITableViewController {
             print(error.localizedDescription)
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
+        
+        do {
+            toDoItems = try context.fetch(fetchRequest)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     override func viewDidLoad() {
