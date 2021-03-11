@@ -15,6 +15,8 @@
 		3585ECB723AB388700F49C82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3585ECB623AB388700F49C82 /* SceneDelegate.swift */; };
 		35F6275723EE6DCD00090812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F6275623EE6DCD00090812 /* Main.storyboard */; };
 		35F6275A23EE6FB000090812 /* MyCars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35F6275823EE6FB000090812 /* MyCars.xcdatamodeld */; };
+		D3E5607825FA920A00DB8350 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5607625FA920900DB8350 /* Car+CoreDataClass.swift */; };
+		D3E5607925FA920A00DB8350 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5607725FA920900DB8350 /* Car+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		35F2F4DF1C084725000E1CB3 /* MyCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F6275623EE6DCD00090812 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		35F6275923EE6FB000090812 /* MyCars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyCars.xcdatamodel; sourceTree = "<group>"; };
+		D3E5607625FA920900DB8350 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D3E5607725FA920900DB8350 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 		3597059F1C08159E00D13FE9 /* MyCars */ = {
 			isa = PBXGroup;
 			children = (
+				D3E5607625FA920900DB8350 /* Car+CoreDataClass.swift */,
+				D3E5607725FA920900DB8350 /* Car+CoreDataProperties.swift */,
 				359705A01C08159E00D13FE9 /* AppDelegate.swift */,
 				3585ECB623AB388700F49C82 /* SceneDelegate.swift */,
 				359705A21C08159E00D13FE9 /* ViewController.swift */,
@@ -150,6 +156,8 @@
 				352762E11C0AEF3600A3BABA /* ViewController.swift in Sources */,
 				352762E01C0AEF3400A3BABA /* AppDelegate.swift in Sources */,
 				35F6275A23EE6FB000090812 /* MyCars.xcdatamodeld in Sources */,
+				D3E5607825FA920A00DB8350 /* Car+CoreDataClass.swift in Sources */,
+				D3E5607925FA920A00DB8350 /* Car+CoreDataProperties.swift in Sources */,
 				3585ECB723AB388700F49C82 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
