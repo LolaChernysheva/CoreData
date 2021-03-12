@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     
     var context: NSManagedObjectContext!
     
+    lazy var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .none
+        return df
+    }()
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var markLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
@@ -31,6 +38,23 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rateItPressed(_ sender: UIButton) {
+        
+    }
+    
+    private func insertDataFrom(selectedCar car: Car) {
+        if let imageData = car.imageData {
+            carImageView.image =  UIImage(data: imageData)
+        }
+        markLabel.text = car.mark
+        modelLabel.text = car.model
+        myChoiceImageView.isHidden = !(car.myChoice)
+        ratingLabel.text = "Rating: \(car.rating) / 10"
+        numberOfTripsLabel.text = "Number of trips: \(car.timesDriven)"
+        
+        if let carLastStarted = car.lastStarted {
+            lastTimeStartedLabel.text = "Last time started: \(dateFormatter.string(from: carLastStarted))"
+        }
+        segmentedControl.tintColor = car.tintColor as? UIColor
         
     }
     
@@ -65,7 +89,7 @@ class ViewController: UIViewController {
             car.lastStarted = carDictionary["lastStarted"] as? Date
             car.timesDriven = carDictionary["timesDriven"] as! Int16
             car.myChoice = carDictionary["myChoice"] as! Bool
-
+            
             //получение названия изображения
             if let imageName = carDictionary["imageName"] as? String,
                 //получение изображения
@@ -84,16 +108,29 @@ class ViewController: UIViewController {
     
     private func getColor(colorDictionary: [String : Float]) -> UIColor {
         guard let red = colorDictionary["red"],
-        let green = colorDictionary["green"],
+            let green = colorDictionary["green"],
             let blue = colorDictionary["blue"] else { return UIColor() }
         return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-            getDataFromFile()
         
+        getDataFromFile()
+        
+        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+        if let mark = segmentedControl.titleForSegment(at: 0) {
+            fetchRequest.predicate = NSPredicate(format: "mark == %@", mark)
+        }
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            if let selectedCar = results.first {
+                insertDataFrom(selectedCar: selectedCar)
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
     
 }
